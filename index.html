@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perhitungan Harga Diskon</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg">
+    <h1 class="text-2xl font-semibold text-center text-blue-900 mb-4">Perhitungan Diskon <br> Codejoki.id</h1>
+
+    <!-- Input Harga Awal -->
+    <div class="mb-4">
+      <label for="harga" class="block text-sm font-medium text-gray-700">Harga Awal</label>
+      <input type="number" id="harga" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" placeholder="Masukkan harga" value="100000">
+    </div>
+
+    <!-- Pilihan Diskon -->
+    <div class="mb-4">
+      <label for="diskon" class="block text-sm font-medium text-gray-700">Pilih Diskon</label>
+      <select id="diskon" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+        <option value="5">5%</option>
+        <option value="10">10%</option>
+      </select>
+    </div>
+
+    <!-- Tombol Hitung -->
+    <div class="mb-4 text-center">
+      <button onclick="hitungDiskon()" class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Hitung Diskon</button>
+    </div>
+
+    <!-- Hasil Perhitungan -->
+    <div id="hasil" class="mt-4 text-center">
+      <p class="text-lg font-medium">Harga Setelah Diskon: <span id="hargaSetelahDiskon" class="text-green-500">Rp. 100.000</span></p>
+    </div>
+  </div>
+
+  <script>
+    function hitungDiskon() {
+      // Ambil nilai harga dan diskon
+      let hargaAwal = parseFloat(document.getElementById('harga').value);
+      let diskon = parseFloat(document.getElementById('diskon').value);
+
+      // Hitung harga setelah diskon
+      let hargaSetelahDiskon = hargaAwal - (hargaAwal * (diskon / 100));
+
+      // Format harga dalam bentuk Rupiah
+      let formatRupiah = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(hargaSetelahDiskon);
+
+      // Tampilkan hasil
+      document.getElementById('hargaSetelahDiskon').textContent = formatRupiah;
+    }
+  </script>
+</body>
+</html>
